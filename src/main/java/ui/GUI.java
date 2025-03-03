@@ -83,12 +83,12 @@ public class GUI {
     private JPanel plInterfaceRsq;
     //private JTextArea taInterfaceRsq;
     private JTextPane InterfaceRsq;
-    private JLabel lbRuleType = new JLabel("匹配方式:");
+    private JLabel lbRuleType = new JLabel("Matching method:");
     private JComboBox cbmRuleType;
-    private JLabel lbRegular = new JLabel("匹配规则:");
+    private JLabel lbRegular = new JLabel("Matching rule:");
     private JTextField tfRegular;
     private JButton btnSaveTmpl;
-    JMenuItem miMarkIdentifyResult = new JMenuItem("标记为识别结果");
+    JMenuItem miMarkIdentifyResult = new JMenuItem("Mark as identification result");
     JPopupMenu pppInterfaceRsq = new JPopupMenu();
 
     //识别结果面板
@@ -97,8 +97,8 @@ public class GUI {
     private JScrollPane spTable;
     private TableModel model;
     private JPopupMenu pppMenu = new JPopupMenu();
-    private JMenuItem miClear = new JMenuItem("清空");
-    private JMenuItem miShowIntruderResult = new JMenuItem("关闭Intruder识别结果显示");
+    private JMenuItem miClear = new JMenuItem("Clear");
+    private JMenuItem miShowIntruderResult = new JMenuItem("Turn off Intruder recognition results display");
 
     //一些公共变量
     public byte[] byteImg;
@@ -175,9 +175,9 @@ public class GUI {
         MainPanel.setLayout(new BorderLayout(0, 0));
 
         //图片获取面板
-        lbURL = new JLabel("验证码URL:");
+        lbURL = new JLabel("CAPTCHA URL:");
         tfURL = new JTextField(20);
-        btnGetCaptcha = new JButton("获取");
+        btnGetCaptcha = new JButton("Fetch");
 
         taRequest = new JTextArea();
         taRequest.setLineWrap(true);
@@ -202,24 +202,24 @@ public class GUI {
         imgRigthPanel.setLayout(new GridBagLayout());
 
         lbImage = new JLabel("");
-        lbCaptcha = new JLabel("验证码:");
+        lbCaptcha = new JLabel("CAPTCHA:");
 
-        lbWords = new JLabel("关键字:");
+        lbWords = new JLabel("Key:");
         tfWords = new JTextField(10);
 
-        lbToken = new JLabel("响应提取(regex):");
+        lbToken = new JLabel("Response extraction (regex):");
         tfToken = new JTextField(10);
         GUI.this.tokenwords = tokenwords;
 
-        lbTokenex = new JLabel("提取的关键字:");
+        lbTokenex = new JLabel("Extracted keyword:");
         tfTokenex = new JLabel("");
 
 
         GUI.this.cap = cap_shibie;
-        lbcapex = new JLabel("验证码识别为:");
+        lbcapex = new JLabel("CAPTCHA recognized as:");
         tfcapex = new JLabel("");
 
-        usebutton = new JRadioButton("是否使用该插件");
+        usebutton = new JRadioButton("Use this plugin?");
 
 //        tlbLock = new JToggleButton("锁定");
 //        tlbLock.setToolTipText("当配置好所有选项后，请锁定防止配置被改动！");
@@ -283,9 +283,9 @@ public class GUI {
         plInterfaceReq = new JPanel();
         plInterfaceReq.setLayout(new GridBagLayout());
 
-        lbInterfaceURL = new JLabel("接口URL:");
+        lbInterfaceURL = new JLabel("API URL:");
         tfInterfaceURL = new JTextField(30);
-        btnIdentify = new JButton("识别");
+        btnIdentify = new JButton("Recognize");
 
         tpInterfaceReq = new JTabbedPane();
         taInterfaceTmplReq = new JTextArea();
@@ -317,8 +317,8 @@ public class GUI {
         tfRegular = new JTextField(30);
         tfRegular.setText("response_data");
         tfRegular.setEnabled(false);
-        btnSaveTmpl = new JButton("匹配");
-        btnSaveTmpl.setToolTipText("用于测试编写的规则是否正确");
+        btnSaveTmpl = new JButton("Match");
+        btnSaveTmpl.setToolTipText("For testing if the rules you've created are working properly");
         tpInterfaceRsq = new JTabbedPane();
         InterfaceRsq = new JTextPane();
         InterfaceRsq.setEditable(true);
@@ -382,17 +382,17 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(tfURL.getText().equals(null) || tfURL.getText().trim().equals("")){
-                    JOptionPane.showMessageDialog(null,"请设置验证码URL","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please set the CAPTCHA URL","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
                 if(taRequest.getText().equals(null) || taRequest.getText().trim().equals("")){
-                    JOptionPane.showMessageDialog(null,"请设置获取验证码的请求数据包","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please set the request packet for obtaining the CAPTCHA","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
 //                if(!Util.isURL(tfURL.getText())){
-//                    JOptionPane.showMessageDialog(null,"验证码URL不合法！","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+//                    JOptionPane.showMessageDialog(null,"验证码URL不合法！","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
 //                    return;
 //                }
 
@@ -446,28 +446,28 @@ public class GUI {
 //                System.out.println(byteImg);
 
                 if(byteImg == null){
-                    JOptionPane.showMessageDialog(null,"请先获取要识别的图片","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please first obtain the image to be recognized","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
                 if(!Util.isImage(byteImg)){
-                    JOptionPane.showMessageDialog(null,"要识别的不是图片，请重新获取！","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
-                    System.out.println("被退出");
+                    JOptionPane.showMessageDialog(null,"The item to be recognized is not an image, please retrieve again!","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
+                    System.out.println("Was logged out");
                     return;
                 }
 
                 if(tfInterfaceURL.getText().trim() == null || tfInterfaceURL.getText().trim().equals("")){
-                    JOptionPane.showMessageDialog(null,"请设置好接口URL","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please set up the API URL","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
                 if(taInterfaceTmplReq.getText().trim() == null|| taInterfaceTmplReq.getText().trim().equals("")){
-                    JOptionPane.showMessageDialog(null,"请设置调用接请求数据包","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please set up the API call request packet","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
                 if(tfRegular.getText().trim() == null|| tfRegular.getText().trim().equals("")){
-                    JOptionPane.showMessageDialog(null,"请设置好匹配结果的正则","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Please set up the regular expression for matching results","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
@@ -492,15 +492,15 @@ public class GUI {
                         }
                     }
                     pmInterfaceMenu = new JPopupMenu();
-                    JMenu menuTmplManager = new JMenu("模版库");
-                    JMenuItem miGeneralTmpl = new JMenuItem("通用模版");
+                    JMenu menuTmplManager = new JMenu("Template library");
+                    JMenuItem miGeneralTmpl = new JMenuItem("General template");
                     JMenuItem miTesseract = new JMenuItem("tesseract-ocr-web");
                     JMenuItem miBaiduOCR = new JMenuItem("ddddocr");
                     JMenuItem miCNNCaptcha = new JMenuItem("cnn_captcha");
-                    JMenuItem miSaveTpl = new JMenuItem("保存为模版");
-                    JMenuItem miUpdateTpl = new JMenuItem("更新模版");
-                    JMenuItem miDelTpl = new JMenuItem("删除模版");
-                    JMenuItem miImageRaw = new JMenuItem("验证码图片二进制内容标签");
+                    JMenuItem miSaveTpl = new JMenuItem("Save as template");
+                    JMenuItem miUpdateTpl = new JMenuItem("Update template");
+                    JMenuItem miDelTpl = new JMenuItem("Delete template");
+                    JMenuItem miImageRaw = new JMenuItem("CAPTCHA image binary content tag");
                     miImageRaw.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -508,7 +508,7 @@ public class GUI {
                             taInterfaceTmplReq.insert("<@IMG_RAW></@IMG_RAW>",n);
                         }
                     });
-                    JMenuItem miBase64Encode = new JMenuItem("Base64编码标签");
+                    JMenuItem miBase64Encode = new JMenuItem("Base64 encoding tag");
                     miBase64Encode.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -520,7 +520,7 @@ public class GUI {
                             taInterfaceTmplReq.setText(sbRaw.toString());
                         }
                     });
-                    JMenuItem miURLEncode = new JMenuItem("URL编码标签");
+                    JMenuItem miURLEncode = new JMenuItem("URL encoding tag");
                     miURLEncode.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -579,24 +579,24 @@ public class GUI {
                                 @Override
                                 public void run() {
                                     if(tfInterfaceURL.getText().trim() == null || tfInterfaceURL.getText().trim().equals("")){
-                                        JOptionPane.showMessageDialog(null,"请设置好接口URL","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                                        JOptionPane.showMessageDialog(null,"Please set up the API URL","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                                         return;
                                     }
 
                                     if(taInterfaceTmplReq.getText().trim() == null|| taInterfaceTmplReq.getText().trim().equals("")){
-                                        JOptionPane.showMessageDialog(null,"请设置调用接请求数据包","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                                        JOptionPane.showMessageDialog(null,"Please set up the API call request packet","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                                         return;
                                     }
 
                                     if(tfRegular.getText().trim() == null|| tfRegular.getText().trim().equals("")){
-                                        JOptionPane.showMessageDialog(null,"请设置好匹配结果的正则","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                                        JOptionPane.showMessageDialog(null,"Please set up the regular expression for matching results","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                                         return;
                                     }
 
                                     SwingUtilities.invokeLater(new Runnable() {
                                         @Override
                                         public void run() {
-                                            String tplName = JOptionPane.showInputDialog(null,"请输入模版名字","captcha-killer提示",JOptionPane.INFORMATION_MESSAGE);
+                                            String tplName = JOptionPane.showInputDialog(null,"Please enter template name","captcha-killer prompt",JOptionPane.INFORMATION_MESSAGE);
                                             TmplEntity tpl = new TmplEntity();
                                             tpl.setName(tplName);
                                             tpl.setReqpacke(taInterfaceTmplReq.getText());
@@ -619,17 +619,17 @@ public class GUI {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             if(tfInterfaceURL.getText().trim() == null || tfInterfaceURL.getText().trim().equals("")){
-                                JOptionPane.showMessageDialog(null,"请设置好接口URL","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(null,"Please set up the API URL","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                                 return;
                             }
 
                             if(taInterfaceTmplReq.getText().trim() == null|| taInterfaceTmplReq.getText().trim().equals("")){
-                                JOptionPane.showMessageDialog(null,"请设置调用接请求数据包","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(null,"Please set up the API call request packet","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                                 return;
                             }
 
                             if(tfRegular.getText().trim() == null|| tfRegular.getText().trim().equals("")){
-                                JOptionPane.showMessageDialog(null,"请设置好匹配结果的正则","captcha-killer提示",JOptionPane.WARNING_MESSAGE);
+                                JOptionPane.showMessageDialog(null,"Please set up the regular expression for matching results","captcha-killer prompt",JOptionPane.WARNING_MESSAGE);
                                 return;
                             }
                             SwingUtilities.invokeLater(new Runnable() {
@@ -820,10 +820,10 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 if(BurpExtender.isShowIntruderResult) {
                     BurpExtender.isShowIntruderResult = false;
-                    miShowIntruderResult.setText("显示Intruder识别结果");
+                    miShowIntruderResult.setText("Display Intruder recognition results");
                 }else{
                     BurpExtender.isShowIntruderResult = true;
-                    miShowIntruderResult.setText("隐藏Intruder识别结果");
+                    miShowIntruderResult.setText("Hide Intruder recognition results");
                 }
             }
         });
@@ -878,7 +878,7 @@ public class GUI {
                         BurpExtender.gui.byteImg = dataimgToimg(new String(gui.byteRes));
                     } else {
                         gui.lbImage.setIcon(null);
-                        gui.lbImage.setText("获取到的不是图片文件或者未设置关键词！");
+                        gui.lbImage.setText("The retrieved file is not an image or keywords have not been set！");
                         gui.lbImage.setForeground(Color.RED);
                         return;
                     }

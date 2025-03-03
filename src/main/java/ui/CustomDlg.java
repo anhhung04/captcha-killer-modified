@@ -44,20 +44,20 @@ public class CustomDlg extends JDialog {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.setBorder(new EmptyBorder(2,2,2,2));
-        lbTitle = new JLabel("模版");
+        lbTitle = new JLabel("Template");
         cbmtpl = new JComboBox();
         for(TmplEntity tpl:TmplEntity.tpls){
             cbmtpl.addItem(tpl.getName());
         }
         if(type == CustomDlg.TYPE_DEL_TPL){
-            this.setTitle("删除模版");
-            cbmtpl.addItem("所有模版");
-            btnOk = new JButton("删除");
+            this.setTitle("Delete Template");
+            cbmtpl.addItem("All Templates");
+            btnOk = new JButton("Delete");
         }else{
-            this.setTitle("更新模版");
-            btnOk = new JButton("更新");
+            this.setTitle("Update Template");
+            btnOk = new JButton("Update");
         }
-        btnCanel = new JButton("取消");
+        btnCanel = new JButton("Cancel");
         GBC gbc_lbtitle = new GBC(0,0,1,1).setFill(GBC.HORIZONTAL).setInsets(10,10,0,0);
         GBC gbc_cbmtpl = new GBC(1,0,99,1).setFill(GBC.HORIZONTAL).setInsets(10,10,0,10).setWeight(100,1);;
         GBC gbc_btnok = new GBC(1,1,1,1).setFill(GBC.HORIZONTAL).setInsets(10,10,0,0);;
@@ -88,15 +88,15 @@ public class CustomDlg extends JDialog {
                         return;
                     }else if(n == TmplEntity.tpls.size()){
                         TmplEntity.tpls.clear();
-                        msg = "清空所有自定义模版成功!";
+                        msg = "successfully cleared all custom templates!";
                     }else {
                         TmplEntity entity = TmplEntity.tpls.get(n);
-                        msg = String.format("删除模版[%s]成功!",entity.getName());
+                        msg = String.format("successfully deleted template [%s]!",entity.getName());
                         TmplEntity.tpls.remove(n);
                     }
                     String tpldb = JSON.toJSONString(TmplEntity.tpls);
                     BurpExtender.callbacks.saveExtensionSetting("tpldb", tpldb);
-                    JOptionPane.showMessageDialog(CustomDlg.this,msg, "captcha-killer提示", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(CustomDlg.this,msg, "captcha-killer prompt", JOptionPane.INFORMATION_MESSAGE);
                     dlg.setVisible(false);
                 }else if(type == CustomDlg.TYPE_UPDATE_TPL){
                     TmplEntity entity = TmplEntity.tpls.get(n);
@@ -110,7 +110,7 @@ public class CustomDlg extends JDialog {
                     }
                     String tpldb = JSON.toJSONString(TmplEntity.tpls);
                     BurpExtender.callbacks.saveExtensionSetting("tpldb",tpldb);
-                    JOptionPane.showMessageDialog(CustomDlg.this, String.format("更新内容到模版[%s]成功!",entity.getName()), "captcha-killer提示", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(CustomDlg.this, String.format("successfully updated content to template [%s]!",entity.getName()), "captcha-killer prompt", JOptionPane.INFORMATION_MESSAGE);
                     dlg.setVisible(false);
                 }
             }

@@ -7,7 +7,7 @@ from aiohttp import web
 import base64
 
 print(
-    "欢迎使用captcha-killer-modified服务端脚本，项目地址:https://github.com/f0ng/captcha-killer-modified\n玲珑安全漏洞挖掘培训学习联系微信: f-f0ng 备注：玲珑安全培训\n\n")
+    "Welcome to captcha-killer-modified server script, project address: https://github.com/f0ng/captcha-killer-modified\nFor Linglong Security vulnerability mining training and learning, contact WeChat: f-f0ng Note: Linglong Security Training\n\n")
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-p", help="http port", default="8888")

@@ -24,8 +24,8 @@ public class TableModel extends AbstractTableModel {
     private JTable table;
     public TableModel(JTable table){
         this.table = table;
-        title.add(0,"验证码");
-        title.add(1,"识别结果");
+        title.add(0,"CAPTCHA");
+        title.add(1,"Recognition Result");
     }
 
     public String getColumnName(int column) {
